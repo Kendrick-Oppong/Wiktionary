@@ -1,4 +1,4 @@
-import { FontType, Logo, Theme } from ".";
+import { FontType, Logo, ThemeSwitch } from ".";
 
 export const NavBarLayout = () => {
   return (
@@ -6,7 +6,7 @@ export const NavBarLayout = () => {
       <Logo />
       <div className="flex justify-between items-center gap-3">
         <FontType />
-        <Theme />
+        <ThemeSwitch />
       </div>
     </nav>
   );

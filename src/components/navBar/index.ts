@@ -1,4 +1,4 @@
-export { Theme } from "./Theme";
+export { ThemeSwitch } from "./ThemeSwitch";
 
 export { FontType } from "./FontType";
 

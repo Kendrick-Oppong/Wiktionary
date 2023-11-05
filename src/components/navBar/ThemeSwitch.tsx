@@ -1,4 +1,4 @@
-export const Theme = () => {
+export const ThemeSwitch = () => {
   return (
     <div>
       <label className="switch">
