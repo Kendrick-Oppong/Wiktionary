@@ -2,11 +2,20 @@ import { useKeyWord } from "../../hooks/useKeyWord";
 import play from "../../assets/images/icon-play.svg";
 import link from "../../assets/images/icon-new-window.svg";
 import { v4 as uuidv4 } from "uuid";
+import { useState } from "react";
 
 export const Word = () => {
+
   const { isLoading, error, data } = useKeyWord();
   if (isLoading) return "Loading...";
   if (error) return "An error has occurred: " + error.message;
+
+  const audioUrl = data && data[0]?.phonetics[0]?.audio;
+  const audio = new Audio(audioUrl);
+
+  const handlePlaySound = () => {
+    return  audio.play();
+  };
 
   return (
     <main>
@@ -22,14 +31,22 @@ export const Word = () => {
             word.phonetics.map((phonetic) => (
               <h2
                 className="italic text-lg font-semibold text-slate-700"
-                key={ uuidv4()}
+                key={uuidv4()}
               >
                 {phonetic.text}
               </h2>
             ))
           )}
         </div>
-        <div>
+        <div
+          tabIndex={0}
+          onClick={handlePlaySound}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              handlePlaySound();
+            }
+          }}
+        >
           <img src={play} alt="play" />
         </div>
       </div>
@@ -75,14 +92,12 @@ export const Word = () => {
               ) : null}
 
               {meaning.antonyms.length > 0 ? (
-                <>
-                  <h3 className="opacity-70">
-                    Antonyms
-                    {meaning.antonyms.map((antonym) => (
-                      <li key={antonym}>{antonym}</li>
-                    ))}
-                  </h3>
-                </>
+                <h3 className="opacity-70">
+                  Antonyms
+                  {meaning.antonyms.map((antonym) => (
+                    <li key={antonym}>{antonym}</li>
+                  ))}
+                </h3>
               ) : null}
             </ul>
           </>
