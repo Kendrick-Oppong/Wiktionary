@@ -25,7 +25,7 @@ export const SearchBar = () => {
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value.trim())}
           placeholder="Search for any word..."
-          className="w-[95%] sm:w-[70%] pl-5  p-2 placeholder:italic placeholder:text-black text-lg  outline-none border-none rounded-lg bg-[#5e5f5f61]"
+          className="w-[95%] sm:w-[70%] pl-5  dark:bg-gray-100 dark:text-black p-2 placeholder:italic placeholder:text-black text-lg  outline-none border-none rounded-lg bg-[#5e5f5f61]"
         />
       </form>
       <img

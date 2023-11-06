@@ -35,7 +35,7 @@ export const Word = () => {
           {data &&
             data[0].phonetics.map((phonetic) => (
               <h2
-                className="italic text-lg font-semibold text-slate-700"
+                className="italic text-lg font-semibold text-slate-700 dark:text-gray-100"
                 key={uuidv4()}
               >
                 {phonetic.text}
@@ -52,7 +52,11 @@ export const Word = () => {
             }
           }}
         >
-          <img src={play} alt="play" className="cursor-pointer" />
+          <img
+            src={play}
+            alt="play"
+            className="cursor-pointer dark:contrast-200"
+          />
         </div>
       </div>
 
@@ -87,7 +91,7 @@ export const Word = () => {
 
                   {meaning.synonyms.map((synonym) => (
                     <li
-                      className="ml-10 my-3 text-lg font-semibold text-slate-700"
+                      className="ml-10 my-3 text-lg font-semibold text-slate-700 dark:text-gray-100"
                       key={synonym}
                     >
                       {synonym}
@@ -102,7 +106,7 @@ export const Word = () => {
                   {meaning.antonyms.map((antonym) => (
                     <li
                       key={antonym}
-                      className="ml-10 my-3 text-lg font-semibold text-slate-700"
+                      className="ml-10 my-3 text-lg font-semibold text-slate-700 dark:text-gray-100"
                     >
                       {antonym}
                     </li>

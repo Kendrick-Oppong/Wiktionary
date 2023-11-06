@@ -10,7 +10,10 @@ function App() {
   const { fontFamily } = useFontFamily();
 
   return (
-    <div style={{ fontFamily: fontFamily }}>
+    <div
+      style={{ fontFamily: fontFamily }}
+      className="dark:bg-[#121212] p-8 dark:text-white min-h-[100dvh]"
+    >
       <NavBarLayout />
       <SearchBar />
       <Word />
