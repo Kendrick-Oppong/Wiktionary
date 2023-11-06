@@ -1,12 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { Word } from "../types/apiType";
+import axios from "axios";
 
-export const useKeyWord = () => {
+export const useKeyWord = (query: string) => {
   return useQuery<Word[], Error>({
-    queryKey: ["word"],
+    queryKey: ["word", query],
     queryFn: () =>
-      fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + "daddy").then(
-        (res) => res.json()
-      ),
+      axios
+        .get<Word[]>("https://api.dictionaryapi.dev/api/v2/entries/en/" + query)
+        .then((res) => res.data),
+    staleTime: 0,
   });
 };
