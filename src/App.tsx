@@ -4,10 +4,13 @@ import { Word } from "./components/results";
 import { SearchBar } from "./components/search";
 import "./App.css";
 import { ScrollToTop } from "./components/scrollToTop";
+import { useFontFamily } from "./context/FontContext";
 
 function App() {
+  const { fontFamily } = useFontFamily();
+
   return (
-    <div>
+    <div style={{ fontFamily: fontFamily }}>
       <NavBarLayout />
       <SearchBar />
       <Word />
@@ -25,12 +28,12 @@ function App() {
           error: {
             style: {
               background: "#ff0000ab",
-              color: "white"
+              color: "white",
             },
           },
         }}
       />
-      <ScrollToTop/>
+      <ScrollToTop />
     </div>
   );
 }
