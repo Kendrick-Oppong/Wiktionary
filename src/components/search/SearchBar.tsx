@@ -1,6 +1,7 @@
 import { useState } from "react";
 import search from "../../assets/images/icon-search.svg";
 import { useSearchTerm } from "../../context/SearchContext";
+import toast from "react-hot-toast";
 
 export const SearchBar = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -8,11 +9,12 @@ export const SearchBar = () => {
 
   const HandleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(typeof searchValue);
-    
-    if (!searchValue || typeof searchValue !== "string") return;
-    setSearchTerm(searchValue);
 
+    if (!searchValue || typeof searchValue !== "string") {
+    toast.error("Field cannot be empty");
+      return;
+    }
+    setSearchTerm(searchValue);
   };
 
   return (

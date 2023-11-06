@@ -7,7 +7,10 @@ export const FontType = () => {
         id=""
         className="cursor-pointer p-1 outline-none rounded-lg border-solid border-2 border-slate-400"
       >
-        <option value="serif">serif</option>
+        <option value="math">math</option>
+        <option value="system-ui" selected>
+          system-ui
+        </option>
         <option value="sans serif">sans serif</option>
         <option value="monospace">monospace</option>
       </select>

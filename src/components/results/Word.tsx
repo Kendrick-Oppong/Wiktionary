@@ -9,14 +9,16 @@ import { ErrorMessage } from "../error";
 export const Word = () => {
   const { searchTerm } = useSearchTerm();
   const { isLoading, error, data } = useKeyWord(searchTerm);
-  console.log(error);
+  console.log(data);
   if (isLoading) return <Loader />;
-  if (error ) return <ErrorMessage error={error} />;
+  if (error) return <ErrorMessage error={error} />;
 
-  const audioUrl = data && data[0]?.phonetics[0]?.audio;
-  const audio = new Audio(audioUrl);
-
-  const handlePlaySound = () => {
+  const handlePlaySound = async () => {
+    const audioUrl =
+      (data && data[0]?.phonetics[0]?.audio) ||
+      (data && data[0]?.phonetics[1]?.audio);
+    const audio = new Audio(audioUrl);
+    console.log(audioUrl);
     return audio.play();
   };
 
@@ -40,6 +42,7 @@ export const Word = () => {
         </div>
         <div
           tabIndex={0}
+          className="my-auto"
           onClick={handlePlaySound}
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {
@@ -108,14 +111,15 @@ export const Word = () => {
           </>
         ))
       )}
-      <div>
+      <div className="border-y-4 pb-6  rounded-lg border-slate-400">
+        <h1 className="opacity-70"> Source Urls</h1>
         {data?.map((word) =>
           word.sourceUrls.map((urls) => (
-            <h1 className="text-lg font-semibold" key={urls}>
+            <li className="ml-5 text-lg font-semibold" key={urls}>
               <a href={urls} target="_blank" className="text-blue-800">
                 {urls} <img src={link} alt="" className="inline ml-1 mb-1" />
               </a>
-            </h1>
+            </li>
           ))
         )}
       </div>

@@ -10,5 +10,6 @@ export const useKeyWord = (query: string) => {
         .get<Word[]>("https://api.dictionaryapi.dev/api/v2/entries/en/" + query)
         .then((res) => res.data),
     staleTime: 0,
+    refetchOnWindowFocus: false,
   });
 };
