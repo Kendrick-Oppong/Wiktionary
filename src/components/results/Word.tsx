@@ -5,11 +5,12 @@ import { v4 as uuidv4 } from "uuid";
 import { useSearchTerm } from "../../context/SearchContext";
 import { Loader } from "../loader";
 import { ErrorMessage } from "../error";
+import toast from "react-hot-toast";
 
 export const Word = () => {
   const { searchTerm } = useSearchTerm();
   const { isLoading, error, data } = useKeyWord(searchTerm);
-  console.log(data);
+
   if (isLoading) return <Loader />;
   if (error) return <ErrorMessage error={error} />;
 
@@ -18,6 +19,7 @@ export const Word = () => {
       (data && data[0]?.phonetics[0]?.audio) ||
       (data && data[0]?.phonetics[1]?.audio);
     const audio = new Audio(audioUrl);
+    if (!audioUrl) toast.error("Audio file not found");
     console.log(audioUrl);
     return audio.play();
   };
@@ -111,7 +113,7 @@ export const Word = () => {
           </>
         ))
       )}
-      <div className="border-y-4 pb-6  rounded-lg border-slate-400">
+      <div className="border-b-4 pb-6  rounded-lg border-slate-400">
         <h1 className="opacity-70"> Source Urls</h1>
         {data?.map((word) =>
           word.sourceUrls.map((urls) => (

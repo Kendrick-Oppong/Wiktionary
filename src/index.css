@@ -212,3 +212,20 @@ li::marker {
  top: calc(50% - 1.25em);
  left: calc(50% - 1.25em);
 }
+
+
+/* Scroll To Top */
+
+.scrollToTop {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    background-image: linear-gradient(270deg, #ffb978 0%, #ff922d 100%);
+    padding: 1rem;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
