@@ -20,7 +20,6 @@ export const SearchBar = () => {
       <form onSubmit={HandleSearch}>
         <input
           type="search"
-          name="search"
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value.trim())}
           placeholder="Search for any word..."

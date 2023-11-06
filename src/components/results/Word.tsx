@@ -4,18 +4,14 @@ import link from "../../assets/images/icon-new-window.svg";
 import { v4 as uuidv4 } from "uuid";
 import { useSearchTerm } from "../../context/SearchContext";
 import { Loader } from "../loader";
+import { ErrorMessage } from "../error";
 
 export const Word = () => {
   const { searchTerm } = useSearchTerm();
   const { isLoading, error, data } = useKeyWord(searchTerm);
-
+  console.log(error);
   if (isLoading) return <Loader />;
-  if (error)
-    return (
-      <h1 className="text-red-700 text-center text-lg">
-        An error has occurred: {`${error.message}`}
-      </h1>
-    );
+  if (error ) return <ErrorMessage error={error} />;
 
   const audioUrl = data && data[0]?.phonetics[0]?.audio;
   const audio = new Audio(audioUrl);
